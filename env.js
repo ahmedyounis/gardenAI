@@ -8,6 +8,7 @@ var pump = new Gpio(pumpGPIO, 'out'); //use GPIO pin 4, and specify that it is o
 var pumpRunning = false;
 var sleep = require('sleep');
 const cliProgress = require('cli-progress');
+const { exec } = require("child_process");
 
 
 
@@ -20,6 +21,9 @@ if (pump.readSync() === 0) {
 
 // MAIN  
 while (pumpRunning = true) {
+
+    exec("./hum.c", (error, stdout, stderr) => console.log(stdout));
+
     runPump();
     console.log('sleeping for 1 hour');
     progBar(waterBreakTime)
