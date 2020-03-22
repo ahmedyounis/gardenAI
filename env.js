@@ -3,6 +3,8 @@ var pump = new Gpio(23, 'out'); //use GPIO pin 4, and specify that it is output
 var pumpRunning = false;
 var sleep = require('sleep');
 
+
+// make sure the pump is off
 if (pump.readSync() === 0) {
 } else {
     pump.writeSync(0);
