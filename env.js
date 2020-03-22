@@ -1,6 +1,6 @@
 let pumpGPIO = 23;
-let waterTime = 120;    // TIME TO WATER THE PLANTS IN SECCONDS
-
+let waterTime = 120;        // TIME TO WATER THE PLANTS IN SECCONDS
+let waterBreakTime = 3600;  // TIME TO WAIT IN BETWEEN WATER CYCLES
 
 // IMPORTS
 var Gpio = require('onoff').Gpio; //include onoff to interact with the GPIO
@@ -22,6 +22,7 @@ if (pump.readSync() === 0) {
 while (pumpRunning = true) {
     runPump();
     console.log('sleeping for 1 hour');
+    progBar(waterBreakTime)
     sleep.sleep(3600)
 }
 
