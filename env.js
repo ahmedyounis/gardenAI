@@ -1,10 +1,11 @@
+let pumpGPIO = 23;
+let waterTime = 120;    // TIME TO WATER THE PLANTS IN SECCONDS
+
+
 var Gpio = require('onoff').Gpio; //include onoff to interact with the GPIO
 var pump = new Gpio(pumpGPIO, 'out'); //use GPIO pin 4, and specify that it is output
 var pumpRunning = false;
 var sleep = require('sleep');
-
-let pumpGPIO = 23;
-let waterTime = 120;    // TIME TO WATER THE PLANTS IN SECCONDS
 
 
 // Initializations
