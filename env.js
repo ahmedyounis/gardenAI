@@ -2,20 +2,23 @@ let pumpGPIO = 23;
 let waterTime = 120;    // TIME TO WATER THE PLANTS IN SECCONDS
 
 
+// IMPORTS
 var Gpio = require('onoff').Gpio; //include onoff to interact with the GPIO
 var pump = new Gpio(pumpGPIO, 'out'); //use GPIO pin 4, and specify that it is output
 var pumpRunning = false;
 var sleep = require('sleep');
+const cliProgress = require('cli-progress');
 
 
-// Initializations
+
+// INIT
 if (pump.readSync() === 0) {
 } else {
     pump.writeSync(0);
 }
 
 
-// Main program 
+// MAIN  
 while (pumpRunning = true) {
     runPump();
     console.log('sleeping for 1 hour');
@@ -24,14 +27,26 @@ while (pumpRunning = true) {
 
 
 
-// Functions 
+// FUNCTIONS 
 
 function runPump() {
     console.log('Running Water Pump');
-    pump.writeSync(1); 
-    sleep.sleep(waterTime);  
-    pump.writeSync(0); 
+    pump.writeSync(1);
+    progBar(waterTime)
+    pump.writeSync(0);
     console.log('Stopping Water Pump');
+}
+
+
+function progBar(waterTime) {
+    const bar1 = new cliProgress.SingleBar({}, cliProgress.Presets.shades_classic);
+    bar1.start(100, 0);
+    var i;
+    for (i=0;i<waterTime;i=i+10) {
+        bar1.update(i);
+        sleep.sleep(waterTime/10);
+    }
+    bar1.stop();
 }
 
 function endPump() { //function to stop blinking
