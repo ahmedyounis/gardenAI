@@ -50,7 +50,7 @@ function progBar(totalTime) {
     var i;
     for (i=0;i<totalTime;i=i+10) {
         bar1.update(i);
-        sleep.sleep(totalTime*60/10);
+        sleep.sleep(totalTime/10);
     }
     bar1.stop();
 }
