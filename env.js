@@ -1,20 +1,17 @@
 // Globals
 let pumpGPIO = 23;
-let waterTime = 100;        // TIME TO WATER THE PLANTS IN SECCONDS
-let waterBreakTime = 100;  // TIME TO WAIT IN BETWEEN WATER CYCLES
+let waterTime = 10;        // TIME TO WATER THE PLANTS IN SECCONDS
+let waterBreakTime = 10;  // TIME TO WAIT IN BETWEEN WATER CYCLES in seconds
 
 var Gpio = require('onoff').Gpio; //include onoff to interact with the GPIO
 
 var pump = new Gpio(pumpGPIO, 'out'); //use GPIO pin 4, and specify that it is output
 var pumpRunning = false;
 
-
-
 // IMPORTS
 const cliProgress = require('cli-progress');
 const { exec } = require("child_process");
 var sleep = require('sleep');
-
 
 
 // INIT
@@ -23,22 +20,21 @@ if (pump.readSync() === 0) {
     pump.writeSync(0);
 }
 
-
 // MAIN  
 while (pumpRunning = true) {
 
+    // get the humidity
     //exec("./hum.c", (error, stdout, stderr) => console.log(stdout));
 
+    // run the pump and display progress bar
     runPump();
-    console.log('sleeping for 1 hour');
+    console.log('sleeping...');
     progBar(waterBreakTime)
-    sleep.sleep(3600)
+    //sleep.sleep(waterBreakTime * 60)
 }
 
 
-
 // FUNCTIONS 
-
 function runPump() {
     console.log('Running Water Pump');
     pump.writeSync(1);
@@ -48,13 +44,13 @@ function runPump() {
 }
 
 
-function progBar(waterTime) {
+function progBar(totalTime) {
     const bar1 = new cliProgress.SingleBar({}, cliProgress.Presets.shades_classic);
     bar1.start(100, 0);
     var i;
-    for (i=0;i<waterTime;i=i+10) {
+    for (i=0;i<totalTime;i=i+10) {
         bar1.update(i);
-        sleep.sleep(waterTime/10);
+        sleep.sleep(totalTime*60/10);
     }
     bar1.stop();
 }
