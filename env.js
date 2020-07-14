@@ -1,7 +1,7 @@
 // Globals
 let pumpGPIO = 23;
-let waterTime = 5;        // TIME TO WATER THE PLANTS IN SECCONDS
-let waterBreakTime = 5;  // TIME TO WAIT IN BETWEEN WATER CYCLES
+let waterTime = 100;        // TIME TO WATER THE PLANTS IN SECCONDS
+let waterBreakTime = 100;  // TIME TO WAIT IN BETWEEN WATER CYCLES
 
 var Gpio = require('onoff').Gpio; //include onoff to interact with the GPIO
 
@@ -17,8 +17,6 @@ var sleep = require('sleep');
 
 
 
-
-
 // INIT
 if (pump.readSync() === 0) {
 } else {
@@ -29,7 +27,7 @@ if (pump.readSync() === 0) {
 // MAIN  
 while (pumpRunning = true) {
 
-    exec("./hum.c", (error, stdout, stderr) => console.log(stdout));
+    //exec("./hum.c", (error, stdout, stderr) => console.log(stdout));
 
     runPump();
     console.log('sleeping for 1 hour');
@@ -44,7 +42,7 @@ while (pumpRunning = true) {
 function runPump() {
     console.log('Running Water Pump');
     pump.writeSync(1);
-    progBar(waterTime)
+    progBar(waterTime);
     pump.writeSync(0);
     console.log('Stopping Water Pump');
 }
