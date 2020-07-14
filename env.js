@@ -1,14 +1,17 @@
+// IMPORTS
+var Gpio = require('onoff').Gpio; //include onoff to interact with the GPIO
+const cliProgress = require('cli-progress');
+const { exec } = require("child_process");
+var sleep = require('sleep');
+
+
+// Globals
 let pumpGPIO = 23;
 let waterTime = 5;        // TIME TO WATER THE PLANTS IN SECCONDS
 let waterBreakTime = 5;  // TIME TO WAIT IN BETWEEN WATER CYCLES
-
-// IMPORTS
-var Gpio = require('onoff').Gpio; //include onoff to interact with the GPIO
 var pump = new Gpio(pumpGPIO, 'out'); //use GPIO pin 4, and specify that it is output
 var pumpRunning = false;
-var sleep = require('sleep');
-const cliProgress = require('cli-progress');
-const { exec } = require("child_process");
+
 
 
 // INIT
