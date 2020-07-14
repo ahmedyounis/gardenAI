@@ -1,7 +1,7 @@
 // Globals
 let pumpGPIO = 23;
-let waterTime = 10;        // TIME TO WATER THE PLANTS IN SECCONDS
-let waterBreakTime = 10;  // TIME TO WAIT IN BETWEEN WATER CYCLES in seconds
+let waterTime = 100;        // TIME TO WATER THE PLANTS IN SECCONDS
+let waterBreakTime = 100;  // TIME TO WAIT IN BETWEEN WATER CYCLES in seconds
 
 var Gpio = require('onoff').Gpio; //include onoff to interact with the GPIO
 
