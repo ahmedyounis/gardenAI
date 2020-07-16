@@ -5,33 +5,44 @@ let waterBreakTime = 3600;  // TIME TO WAIT IN BETWEEN WATER CYCLES in seconds
 
 var Gpio = require('onoff').Gpio; //include onoff to interact with the GPIO
 
+
 var pump = new Gpio(pumpGPIO, 'out'); //use GPIO pin 4, and specify that it is output
 var pumpRunning = false;
+
 
 // IMPORTS
 const cliProgress = require('cli-progress');
 const { exec } = require("child_process");
 var sleep = require('sleep');
+var CronJob = require('cron').CronJob;
 
 
-// INIT
+// pump the water every 10 minutes. 
+var pumpWater = new CronJob('* */10 * * * *', function() {
+        const d = new Date();
+        runPump();
+    }, null, true, 'America/Los_Angeles');
+pumpWater.start();
+
+
+// INITIALIZATION 
 if (pump.readSync() === 0) {
 } else {
     pump.writeSync(0);
 }
 
-// MAIN  
-while (pumpRunning = true) {
+// MAIN  NOT NEEDED 
+// while (pumpRunning = true) {
 
-    // get the humidity
-    //exec("./hum.c", (error, stdout, stderr) => console.log(stdout));
+//     // get the humidity
+//     //exec("./hum.c", (error, stdout, stderr) => console.log(stdout));
 
-    // run the pump and display progress bar
-    runPump();
-    console.log('sleeping...');
-    progBar(waterBreakTime)
-    //sleep.sleep(waterBreakTime * 60)
-}
+//     // run the pump and display progress bar
+//     runPump();
+//     console.log('sleeping...');
+//     progBar(waterBreakTime)
+//     //sleep.sleep(waterBreakTime * 60)
+// }
 
 
 // FUNCTIONS 
@@ -42,6 +53,10 @@ function runPump() {
     pump.writeSync(0);
     console.log('Stopping Water Pump');
 }
+
+
+// TODO: WEB INTERFACE, graphs of soil humidity, air temp & humidity, night and day, camera
+// Terminal progress bar
 
 
 function progBar(totalTime) {
@@ -55,16 +70,22 @@ function progBar(totalTime) {
     bar1.stop();
 }
 
-function endPump() { //function to stop blinking
+
+// NOT ACTUALLY WORKING
+function endPump() { 
     console.log('Stoping Pump');
-    pump.writeSync(0); // Turn LED off
-    pump.unexport(); // Unexport GPIO to free resources
+    pump.writeSync(0); // Turn off the pump   
+    pump.unexport(); //   Free GPIO resources
 }
 
+
+// Make an exit
 process.on('exit', function (err) {
     endPump();
 });
 
+
+// When Shit hits the fan
 process.on('uncaughtException', function (err) {
     console.log('Shit! bug->' + err);
     endPump();
