@@ -17,19 +17,23 @@ var sleep = require('sleep');
 var CronJob = require('cron').CronJob;
 
 
-// pump the water every 10 minutes. 
-var pumpWater = new CronJob('* */10 * * * *', function() {
-        const d = new Date();
-        runPump();
-    }, null, true, 'America/Los_Angeles');
-pumpWater.start();
-
 
 // INITIALIZATION 
 if (pump.readSync() === 0) {
 } else {
     pump.writeSync(0);
 }
+
+
+// initialize cron job: pump the water every 10 minutes. 
+var pumpWater = new CronJob('* */20 * * * *', function() {
+        //const d = new Date();
+        runPump();
+    }, null, true, 'America/Los_Angeles');    
+// start the cron job
+pumpWater.start();
+
+
 
 // MAIN  NOT NEEDED 
 // while (pumpRunning = true) {
