@@ -9,8 +9,11 @@
     "start": "node server.js"
   },
   "dependencies": {
+    "child_process": "^1.0.2",
+    "cli-progress": "^3.8.2",
     "cron": "^1.8.2",
     "express": "^4.16.1",
+    "onoff": "^6.0.0",
     "sleep": "^6.3.0"
   }
 }
