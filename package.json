@@ -1,14 +1,16 @@
 {
-    "name": "GardenAI",
-    "version": "1.0.0",
-    "description": "Garden on Docker",
-    "author": "KoNG",
-    "main": "server.js",
-    "repository": "https://github.com/ahmedyounis/gardenAI",
-    "scripts": {
-      "start": "node server.js"
-    },
-    "dependencies": {
-      "express": "^4.16.1"
-    }
+  "name": "GardenAI",
+  "version": "1.0.0",
+  "description": "Garden on Docker",
+  "author": "KoNG",
+  "main": "server.js",
+  "repository": "https://github.com/ahmedyounis/gardenAI",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "cron": "^1.8.2",
+    "express": "^4.16.1",
+    "sleep": "^6.3.0"
   }
+}
