@@ -1,7 +1,12 @@
-FROM node:current-slim
+FROM node
 WORKDIR /usr/src/app
-COPY package.json .
+COPY package*.json ./
 RUN npm install
-EXPOSE 3000
-CMD [ "node", "server.js" ]
 COPY . .
+EXPOSE 3000
+
+RUN apt-get update
+RUN apt-get install python
+
+CMD [ "node", "server.js" ]
+
