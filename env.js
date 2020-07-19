@@ -5,7 +5,6 @@ let waterBreakTime = 3600;  // TIME TO WAIT IN BETWEEN WATER CYCLES in seconds
 
 var Gpio = require('onoff').Gpio; //include onoff to interact with the GPIO
 
-
 var pump = new Gpio(pumpGPIO, 'out'); //use GPIO pin 4, and specify that it is output
 var pumpRunning = false;
 
