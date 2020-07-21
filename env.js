@@ -85,8 +85,10 @@ function endPump() {
 
 
 // Make an exit
-process.on('exit', function (err) {
+process.on('SIGINT', function (err) {
     endPump();
+    process.stdout.write('\n end \n');
+    process.exit();
 });
 
 
