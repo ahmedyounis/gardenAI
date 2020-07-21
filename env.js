@@ -25,7 +25,7 @@ if (pump.readSync() === 0) {
 // initialize cron job: pump the water every 10 minutes. 
 var pumpWater = new CronJob('0 */30 * * * *', function() {
         //const d = new Date();
-        runPump();
+        runPump(); 
         const d = new Date();
         console.log('Every Tenth Minute:', d);
     }, null, true, 'America/Los_Angeles');    
