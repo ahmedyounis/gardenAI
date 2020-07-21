@@ -13,7 +13,7 @@ var pumpRunning = false;
 const cliProgress = require('cli-progress');
 const { exec } = require("child_process");
 var sleep = require('sleep');
-var CronJob = require('cron').CronJob;
+const CronJob = require('cron').CronJob;
 
 // INITIALIZATION 
 if (pump.readSync() === 0) {
