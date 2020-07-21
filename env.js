@@ -27,8 +27,8 @@ var pumpWater = new CronJob('0 */30 * * * *', function() {
         //const d = new Date();
         runPump(); 
         const d = new Date();
-        console.log('Every Tenth Minute:', d);
-    }, null, true, 'America/Los_Angeles');    
+        console.log('Every 30 Minute:', d);
+    }, null, true, 'America/New_York');    
 // start the cron job
 console.log('cron initilized.');
 pumpWater.start();
