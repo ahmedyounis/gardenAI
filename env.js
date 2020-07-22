@@ -21,8 +21,8 @@ if (pump.readSync() === 0) {
     pump.writeSync(0);
 }
 
-
-console.log(process.argv);
+const myArgs = process.argv.slice(2);
+console.log('Passing parrameters: ', myArgs);
 
 
 // initialize cron job: pump the water every 10 minutes. 
@@ -35,11 +35,11 @@ Day of Month: 1-31
 Months: 0-11 (Jan-Dec)
 Day of Week: 0-6 (Sun-Sat)
 */
-var pumpWater = new CronJob('0 */' + process.myArgs[0] + ' * * * *', function() {
+var pumpWater = new CronJob('0 */' + myArgs[0] + ' * * * *', function() {
         //const d = new Date();
         runPump(); 
         const d = new Date();
-        console.log('Every : ', process.myArgs[0], d);
+        console.log('Every : ', myArgs[0], d);
     }, null, true, 'America/New_York');    
 // start the cron job
 console.log('cron initilized.');
