@@ -32,7 +32,7 @@ Day of Month: 1-31
 Months: 0-11 (Jan-Dec)
 Day of Week: 0-6 (Sun-Sat)
 */
-var pumpWater = new CronJob('0 */2 * * * *', function() {
+var pumpWater = new CronJob('0 */30 * * * *', function() {
         //const d = new Date();
         runPump(); 
         const d = new Date();
