@@ -8,7 +8,7 @@ var Gpio = require('onoff').Gpio; //include onoff to interact with the GPIO
 var pump = new Gpio(pumpGPIO, 'out'); //use GPIO pin 4, and specify that it is output
 var pumpRunning = false;
 
-const interval = 30;
+const interval = 1;
 
 // IMPORTS
 const cliProgress = require('cli-progress');
