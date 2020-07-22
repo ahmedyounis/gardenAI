@@ -1,7 +1,7 @@
 {
   "name": "gardenai",
   "version": "1.0.0",
-  "description": "Garden on Docker",
+  "description": "Garden on the deck",
   "author": "KoNG",
   "main": "server.js",
   "repository": "https://github.com/ahmedyounis/gardenAI",
@@ -11,6 +11,7 @@
   "dependencies": {
     "child_process": "^1.0.2",
     "cli-progress": "^3.8.2",
+    "config": "^3.3.1",
     "cron": "^1.8.2",
     "express": "^4.16.1",
     "onoff": "^6.0.0",

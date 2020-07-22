@@ -1,20 +1,22 @@
-// Globals
-let pumpGPIO = 23;
-let waterTime = 60;        // TIME TO WATER THE PLANTS IN SECCONDS
-let waterBreakTime = 3600;  // TIME TO WAIT IN BETWEEN WATER CYCLES in seconds
-
-
-var Gpio = require('onoff').Gpio; //include onoff to interact with the GPIO
-var pump = new Gpio(pumpGPIO, 'out'); //use GPIO pin 4, and specify that it is output
-var pumpRunning = false;
-
-const interval = 30;
-
 // IMPORTS
+var config = require('config');
 const cliProgress = require('cli-progress');
 const { exec } = require("child_process");
 var sleep = require('sleep');
 const CronJob = require('cron').CronJob;
+
+// rpie GPIO setup
+let pumpGPIO = config.pumpGPIO;
+//include onoff to interact with the GPIO
+var Gpio = require('onoff').Gpio; 
+var pump = new Gpio(pumpGPIO, 'out'); //use GPIO pin pumpGPIO, and specify that it is output
+
+
+const waterTime = config.waterTime;       
+const interval = config.interval;
+
+
+
 
 // INITIALIZATION 
 if (pump.readSync() === 0) {
