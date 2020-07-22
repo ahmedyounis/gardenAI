@@ -5,4 +5,4 @@ A control system for an indoor / outdoor garden to control water, lights, soil h
 # To start
 
 npm i
-sudo pm2 start env.js --node-args="2"
+sudo pm2 start env.js
