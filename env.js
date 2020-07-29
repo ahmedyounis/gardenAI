@@ -1,5 +1,5 @@
 // IMPORTS
-var config = require('config');
+var config = require('./config');
 const cliProgress = require('cli-progress');
 const { exec } = require("child_process");
 var sleep = require('sleep');
