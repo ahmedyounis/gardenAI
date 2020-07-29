@@ -16,8 +16,6 @@ const waterTime = config.waterTime;
 const interval = config.interval;
 
 
-
-
 // INITIALIZATION 
 if (pump.readSync() === 0) {
 } else {
